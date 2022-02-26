@@ -26,7 +26,7 @@ export default function Home({}) {
       setPokemon(await pokemonResp.json());
     }
     getPokemon();
-  });
+  }, []);
 
   return (
     <div>
