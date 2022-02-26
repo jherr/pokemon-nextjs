@@ -1,6 +1,5 @@
 export default function handler(req, res) {
-  console.log(">> handler");
-  console.log(req.body);
-  console.log("<< handler");
+  console.log(">> modified");
+  console.log(req.body?.head_commit?.modified);
   res.status(200).json({ name: "John Doe" });
 }

@@ -3,7 +3,31 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../../styles/Detail.module.css";
 
-export async function getServerSideProps({ params }) {
+// export async function getServerSideProps({ params }) {
+//   const pokemonResp = await fetch(
+//     `https://raw.githubusercontent.com/jherr/pokemon/main/pokemon/${params.id}.json`
+//   );
+//   const pokemon = await pokemonResp.json();
+//   return {
+//     props: {
+//       pokemon,
+//     },
+//   };
+// }
+
+export async function getStaticPaths() {
+  const pokemonResp = await fetch(
+    "https://raw.githubusercontent.com/jherr/pokemon/main/index.json"
+  );
+  const pokemon = await pokemonResp.json();
+
+  return {
+    paths: pokemon.map(({ id }) => ({ params: { id: id.toString() } })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const pokemonResp = await fetch(
     `https://raw.githubusercontent.com/jherr/pokemon/main/pokemon/${params.id}.json`
   );
