@@ -34,8 +34,12 @@ export default function Home({}) {
         <title>Pokemon Home Page</title>
       </Head>
       <div className={styles.grid}>
-        {pokemon.slice(0, 20).map((pokemon, index) => (
-          <Link href={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+        {pokemon.map((pokemon, index) => (
+          <Link
+            href={`/pokemon/${pokemon.id}`}
+            key={pokemon.id}
+            prefetch={i <= 20}
+          >
             {pokemon.name.english}
           </Link>
         ))}
