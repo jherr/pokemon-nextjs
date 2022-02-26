@@ -4,9 +4,9 @@ export default async function handler(req, res) {
 
   for (const file of req.body?.head_commit?.modified ?? []) {
     if (file.includes("pokemon/")) {
-      const path = file.replace(".json", "");
-      console.log(`Revalidating ${path}`);
-      await res.unstable_revalidate(`${path}`);
+      const url = `/${file.replace(".json", "")}`;
+      console.log(`Revalidating ${url}`);
+      await res.unstable_revalidate(`${url}`);
     }
   }
 
